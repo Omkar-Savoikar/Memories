@@ -3,11 +3,15 @@ import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
 
+import router from "./src/routes/routes.index.js";
+
 const app = express();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+
+app.use("/api/v1", router);
 
 const CONNECTION_URL = "mongodb://localhost:27017/memories";
 const PORT = process.env.PORT || 5000;
