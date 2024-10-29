@@ -1,6 +1,5 @@
 import * as api from "../api/index.js";
 
-// Action Creators
 const getPosts = () => async (dispatch) => {
 	try {
 		const response = await api.fetchPosts();
@@ -28,4 +27,13 @@ const updatePost = (id, postData) => async (dispatch) => {
 	}
 };
 
-export { createPost, getPosts, updatePost };
+const deletePost = (id) => async (dispatch) => {
+	try {
+		await api.deltePost(id);
+		dispatch({ type: "DELETE", payload: id });
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export { createPost, deletePost, getPosts, updatePost };

@@ -1,9 +1,17 @@
 import moment from "moment";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 
+import { deletePost } from "../../../actions/actions.posts.js";
 import IMAGES from "../../../assets/images/index.js";
 
 function Post({ post, setCurrentId }) {
+	const dispatch = useDispatch();
+
+	const handleDelete = () => {
+		dispatch(deletePost(post._id));
+	};
+
 	return (
 		<div className="card">
 			<div className="cardTitle">{post.title}</div>
@@ -28,7 +36,9 @@ function Post({ post, setCurrentId }) {
 					/>
 					{post.likeCount}
 				</button>
-				<button style={{ color: "red" }}>
+				<button
+					style={{ color: "red" }}
+					onClick={handleDelete}>
 					<img
 						src={IMAGES.DELETE}
 						alt="like"
