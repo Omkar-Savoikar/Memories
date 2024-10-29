@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { getPosts } from "./actions/actions.posts.js";
@@ -9,11 +9,12 @@ import Posts from "./components/Posts/Posts.jsx";
 import "./App.css";
 
 function App() {
+	const [currentId, setCurrentId] = useState(null);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(getPosts());
-	}, [dispatch]);
+	}, [currentId, dispatch]);
 
 	return (
 		<div className="container">
@@ -33,10 +34,11 @@ function App() {
 				<button>+</button>
 			</div>
 			<div className="growContainer">
-				<Posts />
-				<div className="formContainer">
-					<Form />
-				</div>
+				<Posts setCurrentId={setCurrentId} />
+				<Form
+					currentId={currentId}
+					setCurrentId={setCurrentId}
+				/>
 			</div>
 		</div>
 	);

@@ -3,11 +3,15 @@ import PropTypes from "prop-types";
 
 import IMAGES from "../../../assets/images/index.js";
 
-function Post({ post }) {
+function Post({ post, setCurrentId }) {
 	return (
 		<div className="card">
 			<div className="cardTitle">{post.title}</div>
-			<button className="cardOptions">...</button>
+			<button
+				className="cardOptions"
+				onClick={() => setCurrentId(post._id)}>
+				...
+			</button>
 			<div className="message">{post.message}</div>
 			<div className="creator">- {post.creator}</div>
 			<div className="cardTime">{moment(post.createdAt).fromNow()}</div>
@@ -40,6 +44,7 @@ function Post({ post }) {
 
 Post.propTypes = {
 	post: PropTypes.object.isRequired,
+	setCurrentId: PropTypes.any.isRequired,
 };
 
 export default Post;

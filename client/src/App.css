@@ -94,24 +94,17 @@ button:hover {
   justify-content: space-between;
 }
 
-.formContainer {
-  /* display: none; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: fit-content;
-  width: 40%;
-  background-color: whitesmoke;
-  color: black;
-  border-radius: 15px;
-  margin: 0 10px;
-}
-
 form {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 1px;
+  align-items: center;
+  height: fit-content;
+  width: 40%;
+  margin: 0 10px;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 15px;
 }
 
 .formTitle {

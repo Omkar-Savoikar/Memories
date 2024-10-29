@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { createPost } from "../../actions/actions.posts.js";
+import { createPost, updatePost } from "../../actions/actions.posts.js";
 
-function Form() {
+function Form({ currentId, setCurrentId }) {
 	const [postData, setPostData] = useState({
 		creator: "",
 		title: "",
@@ -12,14 +13,22 @@ function Form() {
 		selectedFile: "",
 	});
 	const dispatch = useDispatch();
+	const post = useSelector((state) =>
+		currentId ? state.posts.find((post) => post._id === currentId) : null,
+	);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		dispatch(createPost(postData));
+		if (currentId) {
+			dispatch(updatePost(currentId, postData));
+		} else {
+			dispatch(createPost(postData));
+		}
 		clear();
 	};
 
 	const clear = () => {
+		setCurrentId(null);
 		setPostData({
 			creator: "",
 			title: "",
@@ -29,9 +38,17 @@ function Form() {
 		});
 	};
 
+	useEffect(() => {
+		if (post) {
+			setPostData(post);
+		}
+	}, [post]);
+
 	return (
 		<form onSubmit={handleSubmit}>
-			<p className="formTitle">Create a Memory</p>
+			<p className="formTitle">
+				{currentId ? "Editing" : "Creating"} a Memory
+			</p>
 			<input
 				name="creator"
 				label="Creator"
@@ -69,11 +86,16 @@ function Form() {
 				}
 			/>
 			<div className="buttons">
-				<button type="submit">Submit</button>
+				<button type="submit">{currentId ? "Update" : "Submit"}</button>
 				<button onClick={clear}>Clear</button>
 			</div>
 		</form>
 	);
 }
+
+Form.propTypes = {
+	currentId: PropTypes.string,
+	setCurrentId: PropTypes.func.isRequired,
+};
 
 export default Form;
