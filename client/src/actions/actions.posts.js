@@ -21,7 +21,7 @@ const createPost = (newPost) => async (dispatch) => {
 const updatePost = (id, postData) => async (dispatch) => {
 	try {
 		const response = await api.updatePost(id, postData);
-		dispatch({ type: "UPDATE", payload: response.data });
+		dispatch({ type: "UPDATE", payload: response.data.updatedPost });
 	} catch (error) {
 		console.log(error);
 	}
@@ -36,4 +36,13 @@ const deletePost = (id) => async (dispatch) => {
 	}
 };
 
-export { createPost, deletePost, getPosts, updatePost };
+const likePost = (id) => async (dispatch) => {
+	try {
+		const response = await api.likePost(id);
+		dispatch({ type: "LIKE", payload: response.data.updatedPost });
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export { createPost, deletePost, getPosts, likePost, updatePost };

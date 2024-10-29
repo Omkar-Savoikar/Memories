@@ -6,5 +6,6 @@ const fetchPosts = () => axios.get(URI);
 const createPost = (newPost) => axios.post(URI, newPost);
 const updatePost = (id, postData) => axios.put(`${URI}/${id}`, postData);
 const deltePost = (id) => axios.delete(`${URI}/${id}`);
+const likePost = (id) => axios.patch(`${URI}/${id}`);
 
-export { createPost, deltePost, fetchPosts, updatePost };
+export { createPost, deltePost, fetchPosts, likePost, updatePost };

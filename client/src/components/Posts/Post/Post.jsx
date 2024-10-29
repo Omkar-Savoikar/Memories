@@ -2,15 +2,11 @@ import moment from "moment";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 
-import { deletePost } from "../../../actions/actions.posts.js";
+import { deletePost, likePost } from "../../../actions/actions.posts.js";
 import IMAGES from "../../../assets/images/index.js";
 
 function Post({ post, setCurrentId }) {
 	const dispatch = useDispatch();
-
-	const handleDelete = () => {
-		dispatch(deletePost(post._id));
-	};
 
 	return (
 		<div className="card">
@@ -27,7 +23,7 @@ function Post({ post, setCurrentId }) {
 			<div className="cardFooter">
 				<button
 					style={{ color: "blue" }}
-					onClick={() => {}}>
+					onClick={() => dispatch(likePost(post._id))}>
 					<img
 						src={IMAGES.LIKE}
 						alt="like"
@@ -38,7 +34,7 @@ function Post({ post, setCurrentId }) {
 				</button>
 				<button
 					style={{ color: "red" }}
-					onClick={handleDelete}>
+					onClick={() => dispatch(deletePost(post._id))}>
 					<img
 						src={IMAGES.DELETE}
 						alt="like"

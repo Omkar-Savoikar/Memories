@@ -45,7 +45,7 @@ function Form({ currentId, setCurrentId }) {
 	}, [post]);
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form>
 			<p className="formTitle">
 				{currentId ? "Editing" : "Creating"} a Memory
 			</p>
@@ -86,7 +86,11 @@ function Form({ currentId, setCurrentId }) {
 				}
 			/>
 			<div className="buttons">
-				<button type="submit">{currentId ? "Update" : "Submit"}</button>
+				<button
+					type="submit"
+					onClick={handleSubmit}>
+					{currentId ? "Update" : "Submit"}
+				</button>
 				<button onClick={clear}>Clear</button>
 			</div>
 		</form>
