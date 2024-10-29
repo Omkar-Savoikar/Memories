@@ -1,6 +1,254 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0.5rem;
   text-align: center;
+  width: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 80%;
+  margin: auto;
+}
+
+.appbar {
+  background-color: whitesmoke;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  position: static;
+  color: inherit;
+  width: 100%;
+  height: 60px;
+}
+
+.heading {
+  color: rgba(0,183,255, 1);
+  text-align: center;
+  font-weight: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainImage {
+  width: 2.5rem;
+  aspect-ratio: 1/1;
+  margin: 0 1.5rem;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  background-color: gray;
+  color: black;
+  padding: 0 40px;
+  margin: 10px 5px;
+}
+
+button {
+  border-radius: 15px;
+  border: 1px solid black;
+  font-size: large;
+  font-weight: 500;
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: 10px 10px 15px black;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.filters button {
+  height: 80%;
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  color: black;
+}
+
+.filters button:hover {
+  background-color: darkblue;
+  color: whitesmoke;
+}
+
+.growContainer {
+  display: flex;
+  margin: 0 5px;
+  justify-content: space-between;
+}
+
+.formContainer {
+  /* display: none; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  width: 40%;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 15px;
+  margin: 0 10px;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1px;
+}
+
+.formTitle {
+  font-size: larger;
+  font-weight: 500;
+}
+
+form input {
+  display: block;
+  width: 95%;
+  height: 50px;
+  margin: 5px;
+  padding: 0 10px;
+  font-size: x-large;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 15px;
+}
+
+form input:focus {
+  border: 1px solid rgba(0,183,255, 1);
+  box-shadow: 10px 10px 25px black;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 10px;
+}
+
+.buttons button {
+  width: 50%;
+  padding: 10px 0;
+}
+
+.buttons button:nth-child(1) {
+  background-color: blue;
+}
+
+.buttons button:nth-child(2) {
+  background-color: red;
+}
+
+.gridContainer {
+  display: grid;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: stretch;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px;
+  margin: 0 10px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-radius: 15px;
+  position: relative;
+  background-color: beige;
+  color: black;
+  box-shadow: 5px 5px 10px black;
+  height: fit-content;
+}
+
+.cardTitle {
+  font-size: x-large;
+  font-weight: 500;
+  padding: 10px 10px;
+  text-align: center;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 15px 15px 0 0;
+}
+
+.cardOptions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 10px;
+  font-size: x-large;
+  background-color: transparent;
+  color: black;
+  border: none;
+}
+
+.cardOptions:hover {
+  box-shadow: none;
+}
+
+.message {
+  font-size: large;
+  text-align: start;
+  padding: 0 10px;
+  font-weight: 500;
+}
+
+.creator {
+  font-size: large;
+  text-align: end;
+  padding: 0 10px;
+  font-weight: 500;
+}
+
+.cardTime {
+  font-size: small;
+  text-align: end;
+  padding: 0 10px;
+  font-weight: 500;
+}
+
+.cardTags {
+  font-size: medium;
+  text-align: start;
+  padding: 0 10px;
+  font-weight: 500;
+  color: gray;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  margin: 10px 0;
+  gap: 10px;
+}
+
+.cardFooter button {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 0;
+  background-color: transparent;
 }
