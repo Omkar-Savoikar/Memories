@@ -1,9 +1,14 @@
 import bodyParser from "body-parser";
 import cors from "cors";
+import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 
 import router from "./src/routes/routes.index.js";
+
+dotenv.config();
+const CONNECTION_URL = process.env.CONNECTION_URL;
+const PORT = process.env.PORT;
 
 const app = express();
 
@@ -18,14 +23,16 @@ app.use("/", (req, res, next) => {
 
 app.use("/api/v1", router);
 
-const CONNECTION_URL = "mongodb://localhost:27017/memories";
-const PORT = process.env.PORT || 5000;
+app.get("/", (req, res) => {
+	res.send("Welcome to the Server");
+});
 
 mongoose
 	.connect(CONNECTION_URL)
-	.then(() =>
+	.then(() => {
+		console.log("Database Connected");
 		app.listen(PORT, () =>
 			console.log(`Server Running on Port: http://localhost:${PORT}`),
-		),
-	)
+		);
+	})
 	.catch((error) => console.error(error.message));

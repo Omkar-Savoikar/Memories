@@ -9,7 +9,7 @@ import Posts from "./components/Posts/Posts.jsx";
 import "./App.css";
 
 function App() {
-	const [currentId, setCurrentId] = useState(null);
+	const [currentId, setCurrentId] = useState(0);
 	const dispatch = useDispatch();
 
 	useEffect(() => {

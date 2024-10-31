@@ -30,6 +30,7 @@ function Post({ post, setCurrentId }) {
 						width={"20px"}
 						height={"20px"}
 					/>
+					&nbsp;
 					{post.likeCount}
 				</button>
 				<button

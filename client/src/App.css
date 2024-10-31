@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 80%;
+  width: 100%;
   margin: auto;
 }
 
@@ -244,4 +244,15 @@ form input:focus {
   gap: 5px;
   padding: 10px 0;
   background-color: transparent;
+}
+
+@media screen and (max-width: 768px) {
+  .growContainer {
+    flex-direction: column-reverse;
+  }
+
+  form {
+    width: 90%;
+    margin: 10px auto;
+  }
 }

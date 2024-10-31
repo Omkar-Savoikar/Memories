@@ -28,7 +28,7 @@ function Form({ currentId, setCurrentId }) {
 	};
 
 	const clear = () => {
-		setCurrentId(null);
+		setCurrentId(0);
 		setPostData({
 			creator: "",
 			title: "",
@@ -82,7 +82,10 @@ function Form({ currentId, setCurrentId }) {
 				placeholder="Tags"
 				value={postData.tags}
 				onChange={(e) =>
-					setPostData({ ...postData, tags: e.target.value })
+					setPostData({
+						...postData,
+						tags: e.target.value.split(","),
+					})
 				}
 			/>
 			<div className="buttons">
@@ -98,7 +101,7 @@ function Form({ currentId, setCurrentId }) {
 }
 
 Form.propTypes = {
-	currentId: PropTypes.string,
+	currentId: PropTypes.number.isRequired,
 	setCurrentId: PropTypes.func.isRequired,
 };
 
