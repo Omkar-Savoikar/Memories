@@ -1,5 +1,5 @@
 import * as api from "../api/index.js";
-import postActions from "../constants/actionTypes.js";
+import { postActions } from "../constants/actionTypes.js";
 
 const getPosts = () => async (dispatch) => {
 	try {

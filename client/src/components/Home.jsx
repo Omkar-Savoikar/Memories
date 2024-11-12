@@ -7,7 +7,7 @@ import Form from "./Form.jsx";
 import Posts from "./Posts.jsx";
 
 function Home() {
-	const [currentId, setCurrentId] = useState(0);
+	const [currentId, setCurrentId] = useState("");
 	const dispatch = useDispatch();
 
 	useEffect(() => {

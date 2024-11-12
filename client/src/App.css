@@ -198,7 +198,7 @@ form input:focus {
   padding: 5px 10px;
   font-size: x-large;
   background-color: transparent;
-  color: black;
+  color: white;
   border: none;
 }
 
@@ -251,6 +251,7 @@ form input:focus {
   gap: 5px;
   padding: 10px 0;
   background-color: transparent;
+  font-size: small;
 }
 
 .authButton {
@@ -312,6 +313,18 @@ form input:focus {
   background-color: red;
   color: white;
   padding: 5px 10px;
+}
+
+.paper {
+  width: 30%;
+  height: max-content;
+  padding: 100px 0px;
+  background-color: whitesmoke;
+  color: black;
+  font-size: large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 768px) {

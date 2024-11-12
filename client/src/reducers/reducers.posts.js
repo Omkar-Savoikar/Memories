@@ -1,6 +1,6 @@
-import postActions from "../constants/actionTypes.js";
+import { postActions } from "../constants/actionTypes.js";
 
-const reducer = (posts = [], action) => {
+const postRreducer = (posts = [], action) => {
 	//posts is the state
 	switch (action.type) {
 		case postActions.FETCH_ALL:
@@ -19,4 +19,4 @@ const reducer = (posts = [], action) => {
 	}
 };
 
-export default reducer;
+export default postRreducer;
