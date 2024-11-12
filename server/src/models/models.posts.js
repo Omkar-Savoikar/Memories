@@ -14,10 +14,18 @@ const postSchema = mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		username: {
+			type: String,
+			required: true,
+		},
+		image: {
+			type: String,
+			required: true,
+		},
 		tags: [String],
-		likeCount: {
-			type: Number,
-			default: 0,
+		likes: {
+			type: [String],
+			default: [],
 		},
 	},
 	{ timestamps: true },

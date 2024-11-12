@@ -7,13 +7,14 @@ import {
 	likePost,
 	updatePost,
 } from "../controllers/controller.posts.js";
+import auth from "../middlewares/middleware.auth.js";
 
 const postRouter = express.Router();
 
 postRouter.get("/", getPosts);
-postRouter.post("/", createPost);
-postRouter.patch("/:id", likePost);
-postRouter.put("/:id", updatePost);
-postRouter.delete("/:id", deletePost);
+postRouter.post("/", auth, createPost);
+postRouter.patch("/:id", auth, likePost);
+postRouter.put("/:id", auth, updatePost);
+postRouter.delete("/:id", auth, deletePost);
 
 export default postRouter;
