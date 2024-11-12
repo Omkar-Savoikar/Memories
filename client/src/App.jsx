@@ -1,46 +1,32 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-
-import { getPosts } from "./actions/actions.posts.js";
-import IMAGES from "./assets/images/index.js";
-import Form from "./components/Form/Form.jsx";
-import Posts from "./components/Posts/Posts.jsx";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import "./App.css";
 
+import Auth from "./components/Auth.jsx";
+import Filters from "./components/Filters.jsx";
+import Home from "./components/Home.jsx";
+import Navbar from "./components/Navbar.jsx";
+
 function App() {
-	const [currentId, setCurrentId] = useState(0);
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		dispatch(getPosts());
-	}, [currentId, dispatch]);
-
 	return (
-		<div className="container">
-			<div className="appbar">
-				<h1 className="heading">
-					Memories
-					<img
-						className="mainImage"
-						src={IMAGES.MEMORY}
-						alt="memories"
+		<Router>
+			<div className="container">
+				<Navbar />
+				<Filters />
+				<Routes>
+					<Route
+						path="/"
+						exact
+						Component={Home}
 					/>
-				</h1>
+					<Route
+						path="/auth"
+						exact
+						Component={Auth}
+					/>
+				</Routes>
 			</div>
-			<div className="filters">
-				<p>Sort By</p>
-				<p>Search</p>
-				<button>+</button>
-			</div>
-			<div className="growContainer">
-				<Posts setCurrentId={setCurrentId} />
-				<Form
-					currentId={currentId}
-					setCurrentId={setCurrentId}
-				/>
-			</div>
-		</div>
+		</Router>
 	);
 }
 

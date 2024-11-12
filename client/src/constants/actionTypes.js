@@ -1,3 +1,8 @@
+const authActions = {
+	AUTH: "AUTH",
+	LOGOUT: "LOGOUT",
+};
+
 const postActions = {
 	CREATE: "CREATE",
 	UPDATE: "UPDATE",
@@ -6,4 +11,4 @@ const postActions = {
 	LIKE: "LIKE",
 };
 
-export default postActions;
+export { authActions, postActions };

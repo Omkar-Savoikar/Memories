@@ -72,6 +72,14 @@ button:hover {
   transition: box-shadow 0.3s ease-in-out;
 }
 
+button:disabled {
+  cursor: default;
+  box-shadow: none;
+  transition: none;
+  background-color: black !important;
+  color: white !important;
+}
+
 .filters button {
   height: 80%;
   aspect-ratio: 1/1;
@@ -96,11 +104,11 @@ button:hover {
 
 form {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: fit-content;
-  width: 40%;
+  width: 30%;
   margin: 0 10px;
   background-color: whitesmoke;
   color: black;
@@ -136,7 +144,7 @@ form input:focus {
   align-items: center;
   gap: 10px;
   width: 100%;
-  margin: 10px;
+  padding: 10px;
 }
 
 .buttons button {
@@ -154,10 +162,9 @@ form input:focus {
 
 .gridContainer {
   display: grid;
-  flex-grow: 1;
+  width: 70%;
   justify-content: space-between;
-  align-items: stretch;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
   margin: 0 10px;
 }
@@ -244,6 +251,67 @@ form input:focus {
   gap: 5px;
   padding: 10px 0;
   background-color: transparent;
+}
+
+.authButton {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  font-size: inherit;
+}
+
+.authButton:hover {
+  box-shadow: none;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.passwordField {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth {
+  padding: 5px 10px;
+  background-color: blueviolet;
+  color: aliceblue;
+  text-decoration: none;
+}
+
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  background-color: black;
+  color: white;
+  width: 35px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.userName {
+  color: black;
+}
+
+.logout {
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
 }
 
 @media screen and (max-width: 768px) {
