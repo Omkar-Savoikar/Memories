@@ -9,6 +9,8 @@ const postActions = {
 	DELETE: "DELETE",
 	FETCH_ALL: "FETCH_ALL",
 	LIKE: "LIKE",
+	SORT: "SORT",
+	SEARCH: "SEARCH",
 };
 
 export { authActions, postActions };

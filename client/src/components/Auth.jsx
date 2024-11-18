@@ -24,7 +24,6 @@ function Auth() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(userData);
 		if (isSignUp) {
 			if (userData.password !== userData.confirmPassword) {
 				console.error("Passwords dont match");
@@ -98,11 +97,7 @@ function Auth() {
 							onChange={handleChange}
 						/>
 						<img
-							src={
-								isPasswordVisible
-									? IMAGES.VISIBLE
-									: IMAGES.HIDDEN
-							}
+							src={isPasswordVisible ? IMAGES.VISIBLE : IMAGES.HIDDEN}
 							onClick={updateIsPasswordVisble}
 							alt={isPasswordVisible ? "visible" : "hidden"}
 							style={{ width: "1rem", aspectRatio: "1/1" }}
@@ -119,11 +114,7 @@ function Auth() {
 								onChange={handleChange}
 							/>
 							<img
-								src={
-									isCPasswordVisible
-										? IMAGES.VISIBLE
-										: IMAGES.HIDDEN
-								}
+								src={isCPasswordVisible ? IMAGES.VISIBLE : IMAGES.HIDDEN}
 								onClick={updateIsCPasswordVisble}
 								alt={isCPasswordVisible ? "visible" : "hidden"}
 								style={{ width: "1rem", aspectRatio: "1/1" }}
@@ -141,9 +132,7 @@ function Auth() {
 			</form>
 			<div className="grid">
 				<p>
-					{isSignUp
-						? "Already have an account? "
-						: "Don't have an account? "}
+					{isSignUp ? "Already have an account? " : "Don't have an account? "}
 					<button
 						className="authButton"
 						onClick={switchMode}>

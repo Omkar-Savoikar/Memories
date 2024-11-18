@@ -3,6 +3,7 @@
   padding: 0.5rem;
   text-align: center;
   width: 100vw;
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red); 
 }
 
 * {
@@ -164,7 +165,7 @@ form input:focus {
   display: grid;
   width: 70%;
   justify-content: space-between;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   margin: 0 10px;
 }
@@ -179,38 +180,59 @@ form input:focus {
   color: black;
   box-shadow: 5px 5px 10px black;
   height: fit-content;
+  background-repeat: no-repeat;
 }
 
-.cardTitle {
+.cardImage {
   font-size: x-large;
   font-weight: 500;
+  height: 200px;
   padding: 10px 10px;
   text-align: center;
   background-color: whitesmoke;
   color: black;
   border-radius: 15px 15px 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .cardOptions {
   position: absolute;
-  top: 0;
-  right: 0;
-  padding: 5px 10px;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: x-large;
-  background-color: transparent;
-  color: white;
-  border: none;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 50%;
 }
 
 .cardOptions:hover {
   box-shadow: none;
 }
 
-.message {
+.title {
   font-size: large;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.message {
+  font-size: medium;
   text-align: start;
   padding: 0 10px;
   font-weight: 500;
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .creator {
@@ -327,13 +349,88 @@ form input:focus {
   justify-content: center;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1220px) {
+  .gridContainer {
+    grid-template-columns: repeat(2, 1fr);
+    margin: auto;
+  }
+
+  .card {
+    margin: auto;
+    width: 95%;
+  }
+}
+
+/* @media screen and (max-width: 768px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+    margin: auto;
+  }
+
+  .card {
+    margin: auto;
+    width: 80%;
+  }
+} */
+
+@media screen and (max-width: 900px) {
   .growContainer {
     flex-direction: column-reverse;
   }
 
+  .gridContainer {
+    grid-template-columns: 1fr;
+    width: 100%;
+    margin: auto;
+  }
+
+  .card {
+    margin: auto;
+    width: 80%;
+  }
+
+  .paper {
+    width: 80%;
+    margin: 10px auto;
+    padding: 30px 0px;
+  }
+
   form {
-    width: 90%;
+    width: 80%;
     margin: 10px auto;
   }
+}
+
+@media screen and (max-width: 450px) {
+  .heading {
+    font-weight: 500;
+    font-size: medium;
+  }
+
+  .mainImage {
+    width: 1rem;
+    aspect-ratio: 1/1;
+    margin: 0 0.5rem;
+  }
+
+  .filters {
+    justify-content: center;
+  }
+
+  .avatar {
+    font-size: medium;
+    padding: 3px 6px;
+  }
+
+  .logout {
+    font-size: medium;
+    padding: 3px 6px;
+  }
+
+  .paper {
+    width: 80%;
+    margin: 10px auto;
+    padding: 30px;
+  }
+  
 }

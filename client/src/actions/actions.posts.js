@@ -6,7 +6,7 @@ const getPosts = () => async (dispatch) => {
 		const response = await api.fetchPosts();
 		dispatch({ type: postActions.FETCH_ALL, payload: response.data });
 	} catch (error) {
-		console.log(error.message);
+		console.error(error.message);
 	}
 };
 
@@ -15,7 +15,7 @@ const createPost = (newPost) => async (dispatch) => {
 		const response = await api.createPost(newPost);
 		dispatch({ type: postActions.CREATE, payload: response.data });
 	} catch (error) {
-		console.log(error.message);
+		console.error(error.message);
 	}
 };
 
@@ -27,7 +27,7 @@ const updatePost = (id, postData) => async (dispatch) => {
 			payload: response.data.updatedPost,
 		});
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 };
 
@@ -36,7 +36,7 @@ const deletePost = (id) => async (dispatch) => {
 		await api.deltePost(id);
 		dispatch({ type: postActions.DELETE, payload: id });
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 };
 
@@ -48,8 +48,15 @@ const likePost = (id) => async (dispatch) => {
 			payload: response.data.updatedPost,
 		});
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 };
 
-export { createPost, deletePost, getPosts, likePost, updatePost };
+const sortPosts = (sortValue) => (dispatch) => {
+	dispatch({
+		type: postActions.SORT,
+		payload: sortValue,
+	});
+};
+
+export { createPost, deletePost, getPosts, likePost, sortPosts, updatePost };

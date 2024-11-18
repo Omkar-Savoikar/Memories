@@ -5,12 +5,17 @@ import Post from "./Post.jsx";
 
 function Posts({ setCurrentId }) {
 	const posts = useSelector((state) => state.posts);
+	const searchTerm = useSelector((state) => state.searchTerm);
 
-	return !posts.length ? (
-		<div>Loading...</div>
+	const searchedPosts = searchTerm
+		? posts.filter((post) => post.title.toLowerCase().includes(searchTerm.toLowerCase()))
+		: posts;
+
+	return !searchedPosts.length ? (
+		<div>No posts found</div>
 	) : (
 		<div className="gridContainer">
-			{posts.map((post) => (
+			{searchedPosts.map((post) => (
 				<Post
 					key={post._id}
 					post={post}

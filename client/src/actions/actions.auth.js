@@ -9,7 +9,7 @@ const signIn = (userData, navigate) => async (dispatch) => {
 		dispatch({ type: authActions.AUTH, payload: { user, token } });
 		navigate("/");
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 };
 
@@ -21,7 +21,7 @@ const signUp = (userData, navigate) => async (dispatch) => {
 		dispatch({ type: authActions.AUTH, payload: { user, token } });
 		navigate("/");
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 };
 

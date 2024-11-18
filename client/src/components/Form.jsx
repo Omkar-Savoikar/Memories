@@ -13,9 +13,7 @@ const initalFormData = {
 function Form({ currentId, setCurrentId }) {
 	const [postData, setPostData] = useState(initalFormData);
 	const dispatch = useDispatch();
-	const post = useSelector((state) =>
-		currentId ? state.posts.find((post) => post._id === currentId) : null,
-	);
+	const post = useSelector((state) => (currentId ? state.posts.find((post) => post._id === currentId) : null));
 	const user = JSON.parse(localStorage.getItem("memories_user"));
 
 	const convertImageToBase64 = (e) => {
@@ -41,7 +39,7 @@ function Form({ currentId, setCurrentId }) {
 			);
 		} else {
 			if (!postData.image) {
-				console.log("No file selected");
+				console.error("No file selected");
 				return;
 			}
 			dispatch(createPost({ ...postData, username: user?.user.name }));
@@ -65,28 +63,21 @@ function Form({ currentId, setCurrentId }) {
 	if (!user) {
 		return (
 			<div className="paper">
-				<h6>
-					Please Sign In to create your memories and like others
-					memories
-				</h6>
+				<h6>Please Sign In to create your memories and like others memories</h6>
 			</div>
 		);
 	}
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<p className="formTitle">
-				{currentId ? "Editing" : "Creating"} a Memory
-			</p>
+			<p className="formTitle">{currentId ? "Editing" : "Creating"} a Memory</p>
 			<input
 				name="title"
 				label="Title"
 				placeholder="Title"
 				value={postData.title}
 				required
-				onChange={(e) =>
-					setPostData({ ...postData, title: e.target.value })
-				}
+				onChange={(e) => setPostData({ ...postData, title: e.target.value })}
 			/>
 			<input
 				name="message"
@@ -94,9 +85,7 @@ function Form({ currentId, setCurrentId }) {
 				placeholder="Message"
 				value={postData.message}
 				required
-				onChange={(e) =>
-					setPostData({ ...postData, message: e.target.value })
-				}
+				onChange={(e) => setPostData({ ...postData, message: e.target.value })}
 			/>
 			<input
 				name="tags"

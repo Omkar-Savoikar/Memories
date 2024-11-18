@@ -11,16 +11,11 @@ function Post({ post, setCurrentId }) {
 
 	return (
 		<div className="card">
-			<div className="cardTitle">
-				<img
-					className="cardImage"
-					src={post.image}
-					width="100%"
-					alt="Post Image"
-					style={{ display: "block" }}
-				/>
-				{post.title}
-			</div>
+			<div
+				className="cardImage"
+				// to apply gradient on the image - looks good
+				// style={{background: `linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)), url(${post.image})`}}
+				style={{ backgroundImage: `url(${post.image})` }}></div>
 			{user?._id === post.creator && (
 				<button
 					className="cardOptions"
@@ -28,6 +23,7 @@ function Post({ post, setCurrentId }) {
 					...
 				</button>
 			)}
+			<div className="title">{post.title}</div>
 			<div className="message">{post.message}</div>
 			<div className="creator">- {post.username}</div>
 			<div className="cardTime">{moment(post.createdAt).fromNow()}</div>
@@ -38,11 +34,7 @@ function Post({ post, setCurrentId }) {
 					disabled={!user}
 					onClick={() => dispatch(likePost(post._id))}>
 					<img
-						src={
-							post.likes.find((like) => like === user?._id)
-								? IMAGES.LIKE
-								: IMAGES.LIKED
-						}
+						src={post.likes.find((like) => like === user?._id) ? IMAGES.LIKE : IMAGES.LIKED}
 						alt="like"
 						width={"20px"}
 						height={"20px"}

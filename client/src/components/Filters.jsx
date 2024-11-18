@@ -1,8 +1,11 @@
+import SearchBar from "./SearchBar";
+import SortFilter from "./SortFilter";
+
 function Filters() {
 	return (
 		<div className="filters">
-			<p>Sort By</p>
-			<p>Search</p>
+			<SortFilter className="sortFilter" />
+			<SearchBar className="searchBar" />
 			<button>+</button>
 		</div>
 	);
