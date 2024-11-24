@@ -13,4 +13,9 @@ const postActions = {
 	SEARCH: "SEARCH",
 };
 
-export { authActions, postActions };
+const loadingActions = {
+	START: "START",
+	STOP: "STOP",
+};
+
+export { authActions, loadingActions, postActions };

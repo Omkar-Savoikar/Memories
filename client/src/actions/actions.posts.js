@@ -1,10 +1,12 @@
 import * as api from "../api/index.js";
-import { postActions } from "../constants/actionTypes.js";
+import { loadingActions, postActions } from "../constants/actionTypes.js";
 
 const getPosts = () => async (dispatch) => {
 	try {
+		dispatch({ type: loadingActions.START });
 		const response = await api.fetchPosts();
 		dispatch({ type: postActions.FETCH_ALL, payload: response.data });
+		dispatch({ type: loadingActions.STOP });
 	} catch (error) {
 		console.error(error.message);
 	}
@@ -53,10 +55,12 @@ const likePost = (id) => async (dispatch) => {
 };
 
 const sortPosts = (sortValue) => (dispatch) => {
+	dispatch({ type: loadingActions.START });
 	dispatch({
 		type: postActions.SORT,
 		payload: sortValue,
 	});
+	dispatch({ type: loadingActions.STOP });
 };
 
 export { createPost, deletePost, getPosts, likePost, sortPosts, updatePost };

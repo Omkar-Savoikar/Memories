@@ -114,6 +114,7 @@ form {
   background-color: whitesmoke;
   color: black;
   border-radius: 15px;
+  box-shadow: -4px 4px 5px gray;
 }
 
 .formTitle {
@@ -327,6 +328,11 @@ form input:focus {
   text-transform: uppercase;
 }
 
+.avatar:hover {
+  box-shadow: 10px 10px 15px black;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
 .userName {
   color: black;
 }
@@ -347,6 +353,7 @@ form input:focus {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: -4px 4px 5px gray;
 }
 
 @media screen and (max-width: 1220px) {

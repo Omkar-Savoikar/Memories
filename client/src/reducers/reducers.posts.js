@@ -1,31 +1,46 @@
-import { postActions } from "../constants/actionTypes.js";
+import { loadingActions, postActions } from "../constants/actionTypes.js";
 
-const postRreducer = (posts = [], action) => {
+const postRreducer = (state = { isLoading: true, posts: [] }, action) => {
 	//posts is the state
 	switch (action.type) {
 		case postActions.FETCH_ALL:
-			return action.payload;
+			return { ...state, posts: action.payload };
 		case postActions.CREATE:
-			return [...posts, action.payload];
+			return { ...state, posts: [...state.posts, action.payload] };
 		case postActions.UPDATE:
 		case postActions.LIKE:
-			return posts.map((post) => (post._id === action.payload._id ? action.payload : post));
+			return {
+				...state,
+				posts: state.posts.map((post) => (post._id === action.payload._id ? action.payload : post)),
+			};
 		case postActions.DELETE:
-			return posts.filter((post) => post._id !== action.payload);
+			return { ...state, posts: state.posts.filter((post) => post._id !== action.payload) };
 		case postActions.SORT: {
-			const sortedPosts = [...posts];
+			const sortedPosts = [...state.posts];
 			if (action.payload === "title") {
-				return sortedPosts.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()));
+				return {
+					...state,
+					posts: sortedPosts.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase())),
+				};
 			} else if (action.payload === "oldest") {
-				return sortedPosts.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+				return { ...state, posts: sortedPosts.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)) };
 			} else if (action.payload === "latest") {
-				return sortedPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+				return { ...state, posts: sortedPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) };
 			} else {
-				return sortedPosts.sort((a, b) => b.creator.toLowerCase().localeCompare(a.creator.toLowerCase()));
+				return {
+					...state,
+					posts: sortedPosts.sort((a, b) => b.creator.toLowerCase().localeCompare(a.creator.toLowerCase())),
+				};
 			}
 		}
+		case loadingActions.START: {
+			return { ...state, isLoading: true };
+		}
+		case loadingActions.STOP: {
+			return { ...state, isLoading: false };
+		}
 		default:
-			return posts;
+			return state;
 	}
 };
 

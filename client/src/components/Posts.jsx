@@ -4,15 +4,18 @@ import { useSelector } from "react-redux";
 import Post from "./Post.jsx";
 
 function Posts({ setCurrentId }) {
-	const posts = useSelector((state) => state.posts);
+	const { posts, isLoading } = useSelector((state) => state.posts);
 	const searchTerm = useSelector((state) => state.searchTerm);
 
 	const searchedPosts = searchTerm
 		? posts.filter((post) => post.title.toLowerCase().includes(searchTerm.toLowerCase()))
 		: posts;
 
-	return !searchedPosts.length ? (
-		<div>No posts found</div>
+	if (!searchedPosts.length && !isLoading) {
+		return <div>No posts found</div>;
+	}
+	return isLoading ? (
+		<div>Loading</div>
 	) : (
 		<div className="gridContainer">
 			{searchedPosts.map((post) => (
