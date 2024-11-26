@@ -1,6 +1,7 @@
 import moment from "moment";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { deletePost, likePost } from "../actions/actions.posts.js";
 import IMAGES from "../assets/images/index.js";
@@ -8,11 +9,15 @@ import IMAGES from "../assets/images/index.js";
 function Post({ post, setCurrentId }) {
 	const dispatch = useDispatch();
 	const user = JSON.parse(localStorage.getItem("memories_user"))?.user;
+	const navigate = useNavigate();
+
+	const openPost = () => navigate(`/posts/${post._id}`);
 
 	return (
 		<div className="card">
 			<div
 				className="cardImage"
+				onClick={openPost}
 				// to apply gradient on the image - looks good
 				// style={{background: `linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)), url(${post.image})`}}
 				style={{ backgroundImage: `url(${post.image})` }}></div>

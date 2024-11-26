@@ -171,6 +171,37 @@ form input:focus {
   margin: 0 10px;
 }
 
+.detailedCard {
+  display: flex;
+  background-color: whitesmoke;
+  color: black;
+  text-align: left;
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px;
+  justify-content: space-between;
+  box-shadow: 5px 5px 10px black;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.detailedSection {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 60%;
+}
+
+.imageSection{
+  width: 20%;
+  background-color: transparent;
+
+}
+
+.imageSection > img {
+  width: 100%;
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -354,6 +385,23 @@ form input:focus {
   align-items: center;
   justify-content: center;
   box-shadow: -4px 4px 5px gray;
+}
+
+.comments {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 30px;
+}
+
+.commentsContainer {
+  height: 200px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.comments  h6 {
+  text-align: center;
 }
 
 @media screen and (max-width: 1220px) {

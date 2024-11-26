@@ -4,13 +4,15 @@ const authActions = {
 };
 
 const postActions = {
+	COMMENT: "COMMENT",
 	CREATE: "CREATE",
 	UPDATE: "UPDATE",
 	DELETE: "DELETE",
 	FETCH_ALL: "FETCH_ALL",
+	FETCH_POST: "FETCH_POST",
 	LIKE: "LIKE",
-	SORT: "SORT",
 	SEARCH: "SEARCH",
+	SORT: "SORT",
 };
 
 const loadingActions = {

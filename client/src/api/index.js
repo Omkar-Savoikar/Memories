@@ -12,21 +12,15 @@ API.interceptors.request.use((req) => {
 const POSTS_URL = `/api/v1/posts`;
 const USERS_URL = `/api/v1/user`;
 
+const fetchPost = (id) => API.get(`${POSTS_URL}/${id}`);
 const fetchPosts = () => API.get(POSTS_URL);
 const createPost = (newPost) => API.post(POSTS_URL, newPost);
 const updatePost = (id, postData) => API.put(`${POSTS_URL}/${id}`, postData);
 const deltePost = (id) => API.delete(`${POSTS_URL}/${id}`);
 const likePost = (id) => API.patch(`${POSTS_URL}/${id}`);
+const commentPost = (comment, id) => API.patch(`${POSTS_URL}/${id}/comment`, { comment });
 
 const signIn = (userData) => API.post(`${USERS_URL}/signIn`, userData);
 const signUp = (userData) => API.post(`${USERS_URL}/signUp`, userData);
 
-export {
-	createPost,
-	deltePost,
-	fetchPosts,
-	likePost,
-	signIn,
-	signUp,
-	updatePost,
-};
+export { commentPost, createPost, deltePost, fetchPost, fetchPosts, likePost, signIn, signUp, updatePost };

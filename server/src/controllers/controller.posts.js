@@ -1,6 +1,18 @@
 import mongoose from "mongoose";
 import Post from "../models/models.posts.js";
 
+export const getPost = async (req, res) => {
+	const { id } = req.params;
+	try {
+		const postMessage = await Post.findById(id);
+		console.log(postMessage);
+		res.status(200).json(postMessage);
+	} catch (error) {
+		console.error(error);
+		res.status(404).json({ message: error.message });
+	}
+};
+
 export const getPosts = async (req, res) => {
 	try {
 		const postMessages = await Post.find();
@@ -28,14 +40,9 @@ export const createPost = async (req, res) => {
 export const updatePost = async (req, res) => {
 	const { id: _id } = req.params;
 	const post = req.body;
-	if (!mongoose.Types.ObjectId.isValid(_id))
-		return res.status(404).json({ message: "Invalid post ID" });
+	if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).json({ message: "Invalid post ID" });
 	try {
-		const updatedPost = await Post.findByIdAndUpdate(
-			_id,
-			{ ...post, _id },
-			{ new: true },
-		);
+		const updatedPost = await Post.findByIdAndUpdate(_id, { ...post, _id }, { new: true });
 		console.log(updatedPost);
 		return res.status(201).json({ updatedPost });
 	} catch (error) {
@@ -46,8 +53,7 @@ export const updatePost = async (req, res) => {
 
 export const deletePost = async (req, res) => {
 	const { id } = req.params;
-	if (!mongoose.Types.ObjectId.isValid(id))
-		return res.status(404).json({ message: "Invalid post ID" });
+	if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: "Invalid post ID" });
 	try {
 		await Post.findByIdAndDelete(id);
 		res.status(201).json({ message: "Post deleted successfully" });
@@ -62,8 +68,7 @@ export const likePost = async (req, res) => {
 	if (!req.userId) {
 		return res.status(401).json({ message: "Unauthenticated" });
 	}
-	if (!mongoose.Types.ObjectId.isValid(id))
-		return res.status(404).json({ message: "Invalid post ID" });
+	if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ message: "Invalid post ID" });
 	try {
 		const post = await Post.findById(id);
 		const index = post.likes.findIndex((id) => id === String(req.userId));
@@ -72,11 +77,25 @@ export const likePost = async (req, res) => {
 		} else {
 			post.likes = post.likes.filter((id) => id !== String(req.userId));
 		}
-		const updatedPost = await Post.findByIdAndUpdate(
-			id,
-			{ likes: post.likes },
-			{ new: true },
-		);
+		const updatedPost = await Post.findByIdAndUpdate(id, { likes: post.likes }, { new: true });
+		console.log(updatedPost);
+		res.status(201).json({ updatedPost });
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ message: error.message });
+	}
+};
+
+export const commentPost = async (req, res) => {
+	const { id } = req.params;
+	const { comment } = req.body;
+	if (!req.userId) {
+		return res.status(401).json({ message: "Unauthenticated" });
+	}
+	try {
+		const post = await Post.findById(id);
+		post.comments.push(comment);
+		const updatedPost = await Post.findByIdAndUpdate(id, { comments: post.comments }, { new: true });
 		console.log(updatedPost);
 		res.status(201).json({ updatedPost });
 	} catch (error) {
