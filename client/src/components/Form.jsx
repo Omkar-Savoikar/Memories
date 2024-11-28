@@ -13,7 +13,7 @@ const initalFormData = {
 function Form({ currentId, setCurrentId }) {
 	const [postData, setPostData] = useState(initalFormData);
 	const dispatch = useDispatch();
-	const post = useSelector((state) => (currentId ? state.posts.find((post) => post._id === currentId) : null));
+	const post = useSelector((state) => (currentId ? state.posts.posts.find((post) => post._id === currentId) : null));
 	const user = JSON.parse(localStorage.getItem("memories_user"));
 
 	const convertImageToBase64 = (e) => {
